@@ -1,0 +1,297 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
+    <meta name="theme-color" content="#4F7DC9">
+    <meta charset="UTF-8">
+    <title>Advanced Observability with Dynatrace</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../../elements/codelab-elements/codelab-elements.css">
+    <style>
+        .success {
+            color: #1e8e3e
+        }
+
+        .error {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="UA-175467274-1" id="advanced-observability" title="Advanced Observability with Dynatrace" environment="web" feedback-link="mailto:APAC-SE-Central@dynatrace.com">
+        <google-codelab-step label="Introduction" duration="1">
+            <p>This repository contains the hands on for the Advanced Observability Workshop.</p>
+            <h2 is-upgraded>Prerequisites</h2>
+            <ul>
+                <li>Dynatrace SaaS/Managed Account. Get your free SaaS trial <a href="https://www.dynatrace.com/trial/" target="_blank">here</a>.</li>
+                <li>AWS account, with the ability to create an EC2 instance from a public AMI. Signup to a free trial <a href="https://aws.amazon.com/free/" target="_blank">here</a>.</li>
+                <li>Chrome Browser</li>
+                <li>SSH client such as <a href="https://mobaxterm.mobatek.net/" target="_blank">mobaxterm</a>.</li>
+            </ul>
+            <h2 is-upgraded>Lab Setup</h2>
+            <p>The following steps are used for this lab:</p>
+            <ul>
+                <li>
+                    Sample Application <ul>
+                        <li>Sample App is based on <a href="https://community.dynatrace.com/community/display/DL/easyTravel" target="_blank">easyTravel</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <h2 class="checklist" is-upgraded>What You&#39;ll Learn</h2>
+            <ul class="checklist">
+                <li>Install OneAgent using Ansible CLI</li>
+                <li>Learn Request Attributes for deep code level capture</li>
+                <li>Learn Session Properties for advanced dashboarding</li>
+                <li>Learn Metric Ingestion for automated baselines across all entities</li>
+            </ul>
+        </google-codelab-step>
+        <google-codelab-step label="Automate Agent Rollout" duration="15">
+            <p>In this exercise, we will deploy the OneAgent to a Linux instance via Ansible.</p>
+            <p>Based off our <a href="https://github.com/Dynatrace/Dynatrace-OneAgent-Ansible" target="_blank">Dynatrace Ansible Github</a>, you can rollout Dynatrace Oneagent easily across on Linux and Windows Operating Systems with different available configurations and ensures the OneAgent service maintains a running state. It also provides the tasks to interact with the various OneAgent configuration files.</p>
+            <p>Adapting from an <a href="https://github.com/popecruzdt/dt-ansible" target="_blank">Ansible example</a>, we will be installing that on our host. Other Ansible playbooks examples can be seen <a href="https://github.com/popecruzdt/dt-ansible/blob/popecruzdt/dt-oneagent-install-linux.yml" target="_blank">here</a></p>
+            <h2 is-upgraded>Installing Ansible</h2>
+            <p>Use the command below to setup Ansible in your Linux host</p>
+            <p><code>wget -O- https://raw.githubusercontent.com/Dynatrace-APAC/Workshop-Advanced-Observability/master/setup_ansible.sh | bash</code></p>
+            <p>Positive:Once it&#39;s finished, run the following command to check the status of ansible <code>ansible --version</code></p>
+            <p>You should see that it&#39;s successfully installed along with it&#39;s dependencies</p>
+<pre><code>ansible 2.9.13
+config file = /etc/ansible/ansible.cfg
+configured module search path = [u&#39;/home/advanced-observability-workshop/.ansible/plugins/modules&#39;, u&#39;/usr/share/ansible/plugins/modules&#39;]
+ansible python module location = /usr/lib/python2.7/dist-packages/ansible
+executable location = /usr/bin/ansible
+python version = 2.7.17 (default, Jul 20 2020, 15:37:01) [GCC 7.5.0]
+</code></pre>
+            <h2 is-upgraded>Download the Ansible playbook</h2>
+            <p>Use the command below to setup Ansible in your Linux host</p>
+            <p><code>wget https://raw.githubusercontent.com/Dynatrace-APAC/Workshop-Advanced-Observability/master/dt-oneagent-install-linux.yml</code></p>
+            <p>Using the command<code>more dt-oneagent-install-linux.yml</code>, we can explore the file to preview the necessary variables that we need to provide. For the purposes of the lab, we will use only be using Ansible to rollout on a host. But in a real world context, you can run the playbook across multiple hosts or environments.</p>
+<pre><code># dynatrace oneagent install on linux
+# hosts_group -&gt; inventory group of hosts to execute playbook on
+# dt_api_endpoint -&gt; dynatrace environment api endpoint (include trailing /)
+# dt_api_token -&gt; dynatrace api install token
+# dt_host_group -&gt; dynatrace host group name
+# dt_app_log_content_access -&gt; flag to enable or disable log analytics on host (0 or 1)
+# dt_infra_only -&gt; flag to set cloud infrastructure monitoring mode on host (0 or 1)
+---
+-
+  hosts: localhost
+  name: &#34;dynatrace oneagent install on linux&#34;
+  tasks:
+    -
+      name: &#34;validate ansible execution on linux with sudo access&#34;
+      shell:
+        cmd: ls /opt
+      become: yes
+      changed_when: False
+    # Check the latest available OneAgent version
+    -
+</code></pre>
+            <h2 is-upgraded>Creating the PaaS Token</h2>
+            <p>Go to <strong>Settings &gt; Integration &gt; Platform as a Service</strong></p>
+            <p>Click on <strong>Generate token</strong> and give a token name eg. <strong>Ansible</strong></p>
+            <p>Click on <strong>Generate</strong> and <strong>copy</strong> the token by selecting <strong>Reveal token</strong> to use for the next step.</p>
+            <p class="image-container"><img alt="Deploy" src="img/75bbe5061c351cde.png"></p>
+            <h2 is-upgraded>Running the playbook</h2>
+            <p>Using the command below, make changes to the <strong>dt_api_token</strong> and <strong>dt_api_endpoint</strong> variables. You can tweak the command with a text editor eg. Notepad++</p>
+            <p><strong>EXAMPLE</strong></p>
+<pre><code>ansible-playbook \
+-e dt_api_token=&lt;PAAS-TOKEN&gt; \
+-e dt_host_group=tech-labs \
+-e dt_app_log_content_access=1 \
+-e dt_infra_only=0 \
+-e dt_api_endpoint=https://mou612.managed-sprint.dynalabs.io/e/&lt;DT-ENV&gt;/api/v1/ \
+dt-oneagent-install-linux.yml
+</code></pre>
+            <p><strong>Paste</strong> the command into your terminal window and tweak the <strong>dt_api_token</strong> and <strong>dt_api_endpoint</strong> variables. Replace from token you copied earlier. You can get your from within the Dynatrace environment from the browser.</p>
+            <p class="image-container"><img alt="Deploy" src="img/82f926ac9a2f26e6.png"></p>
+            <p><strong>OUTPUT EXAMPLE</strong></p>
+<pre><code>PLAY [dynatrace oneagent install on linux] ********************************************************************************************************************
+
+TASK [Gathering Facts] ****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [validate ansible execution on linux with sudo access] ***************************************************************************************************
+ok: [localhost]
+
+TASK [get latest oneagent version from dynatrace environment api] *********************************************************************************************
+ok: [localhost]
+
+TASK [set oneagent latest version fact (dt_latest_version)] ***************************************************************************************************
+ok: [localhost]
+
+TASK [check if oneagent is already installed] *****************************************************************************************************************
+ok: [localhost]
+
+TASK [check installed oneagent version] ***********************************************************************************************************************
+skipping: [localhost]
+
+TASK [set oneagent current version fact (dt_current_version)] *************************************************************************************************
+skipping: [localhost]
+
+TASK [debug output current version] ***************************************************************************************************************************
+skipping: [localhost]
+
+TASK [debug output latest version] ****************************************************************************************************************************
+ok: [localhost] =&gt; {
+    &#34;dt_latest_version&#34;: &#34;1.201.96.20200911-082031&#34;
+}
+
+TASK [download oneagent install file] *************************************************************************************************************************
+[DEPRECATION WARNING]: Supplying `headers` as a string is deprecated. Please use dict/hash format for `headers`. This feature will be removed in version 2.10.
+ Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+ok: [localhost]
+
+TASK [install: execute oneagent install file with root privileges] ********************************************************************************************
+changed: [localhost]
+
+TASK [update: execute oneagent install file with root privileges] *********************************************************************************************
+skipping: [localhost]
+
+TASK [validate oneagent installation] *************************************************************************************************************************
+ok: [localhost]
+
+TASK [check host group is correct] ****************************************************************************************************************************
+ok: [localhost]
+
+TASK [set current host group fact (dt_current_host_group)] ****************************************************************************************************
+ok: [localhost]
+
+TASK [update/correct host group setting if not correct] *******************************************************************************************************
+skipping: [localhost]
+
+PLAY RECAP ****************************************************************************************************************************************************
+localhost                  : ok=11   changed=1    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+</code></pre>
+            <h2 is-upgraded>Validate the installation</h2>
+            <p>Go to <strong>Deployment status</strong> on the left navigation. You should see OneAgent installed on the current host.</p>
+            <p class="image-container"><img alt="Deploy" src="img/4830f35f058a48c3.png"></p>
+        </google-codelab-step>
+        <google-codelab-step label="Automatic Discovery &amp; Instrumentation" duration="0">
+            <p>Like most real world examples, you will find Dynatrace already automatically instrumenting your applications. But for deep code level visibility, you will need to restart those services.</p>
+            <h2 is-upgraded>Restart Sample Application</h2>
+            <p>Run the command below to restart the Sample Application Easytravel.</p>
+            <p><code>./restart_easyTravel.sh</code></p>
+            <h2 is-upgraded>Explore the Smartscape</h2>
+            <p>While waiting for Easy Travel to start, you can explore Dynatrace and using the Smartscape, Dynatrace will automatically discover the processes and dependencies that comprises the Easy Travel application!</p>
+            <p><a href="https://www.dynatrace.com/support/help/get-started/4-things-youll-absolutely-love-about-dynatrace/" target="_blank">4 things</a> that you will love about Dynatrace!</p>
+            <p class="image-container"><img alt="Smartscape" src="img/868e111ca8bd48bd.png"></p>
+        </google-codelab-step>
+        <google-codelab-step label="Custom Services" duration="10">
+            <p>In this exercise, we will be creating a custom Java service. This is a typical scenerio for 3rd party apps or proprietary software that Dynatrace monitors but doesn&#39;t instrument automatically.</p>
+            <h2 is-upgraded>Enable Real time updates for Java</h2>
+            <p>Go to <strong>Settings &gt; Server-side service monitoring &gt; Deep Monitoring &gt; Real-time updates</strong>.</p>
+            <p class="image-container"><img alt="Deploy" src="img/d7ea31da01bf3f15.png"></p>
+            <p>Go to <strong>Settings &gt; Server-side service monitoring &gt; custom service detection</strong></p>
+            <p>Click on <strong>Define Java services</strong> and use the following:</p>
+            <ul>
+                <li>Name - <strong>Credit Card Verification</strong></li>
+                <li>Click on <strong>Find entry point</strong></li>
+                <li>Select <strong>com.dynatrace.easytravel.business.backend.jar</strong></li>
+                <li>Search for <strong>ipc.SocketNativeApplication</strong></li>
+                <li>Use selected class</li>
+                <li>Select <strong>sendAndReceive</strong> method</li>
+                <li>Select <strong>Finish</strong></li>
+                <li>Click on <strong>Save</strong></li>
+            </ul>
+            <p class="image-container"><img alt="Custom-service" src="img/fe27269440df3e80.gif"></p>
+        </google-codelab-step>
+        <google-codelab-step label="Request Attributes" duration="10">
+            <p>In this exercise, we will cover the setting up Request Attributes. These leveraged for deep visibility into all the details of your users&#39; interactions with your application.</p>
+            <h2 is-upgraded>Creating Request Attributes</h2>
+            <p>Go to <strong>Settings &gt; Server-side service monitoring &gt; Request Attributes</strong></p>
+            <p>Click on <strong>Define a new request attribute</strong> and use the following:</p>
+            <ul>
+                <li>Request attribute source – <strong>Java method parameter(s)</strong></li>
+                <li>Click on <strong>Select method sources</strong></li>
+                <li>Select <strong>business.backend</strong></li>
+                <li>Search for <strong>BookingService</strong></li>
+                <li>Select <strong>Use the selected class</strong></li>
+                <li>Search for <strong>checkLoyaltyStatus</strong></li>
+                <li>Choose <strong>2:java.lang.String</strong> on Capture Drop down</li>
+                <li>Click on <strong>Save</strong></li>
+            </ul>
+            <p class="image-container"><img alt="Request-attribute" src="img/408920b64892f607.gif"></p>
+            <aside class="warning">
+                <p>Note that examples of <strong>Request Attributes</strong> have also been created for you and we are doing these for the purposes of running through the request attribute creation process.</p>
+            </aside>
+            <h2 is-upgraded>Validate of Loyalty Status Request Attribute</h2>
+            <p>Go to <strong>Transactions and services</strong> and filter on <strong>AuthenticationService</strong>.</p>
+            <p>Click on <strong>View requests</strong> and validate the key-value pairs of Loyalty Status under the <strong>Request Attribute</strong> tab.</p>
+            <p class="image-container"><img alt="Request-attribute" src="img/82c694100abffcef.png"></p>
+        </google-codelab-step>
+        <google-codelab-step label="Calculated Service Metrics Properties" duration="10">
+            <p>In this exercise, we will cover the setting up <strong>Calulated Service Metrics</strong> with Request Attributes. These leveraged for deep visibility into all the details of your users&#39; interactions with your application.</p>
+            <aside class="warning">
+                <p>Note that examples of <strong>Request Attributes</strong> have also been created for you and we are doing these for the purposes of running through the request attribute creation process.</p>
+            </aside>
+            <h2 is-upgraded>Define Calculated Service Metric</h2>
+            <p>Go to <strong>Settings &gt; Server-side service monitoring &gt; Calculated service metrics</strong></p>
+            <p>Click on <strong>Create new metric</strong> and use the following:</p>
+            <ul>
+                <li>Metric name – <strong>Revenue/LoyaltyStatus</strong></li>
+                <li>Metric source – <strong>Request Attribute</strong></li>
+                <li>Request Attribute – <strong>Revenue</strong></li>
+                <li>Unit - <strong>Custom unit</strong></li>
+                <li>Text field - <strong>Dollars</strong></li>
+                <li>Conditions - <strong>Request Attribute ‘Loyalty Status&#39; exists</strong></li>
+                <li>Conditions - <strong>Request Attribute ‘Revenue&#39; exists</strong></li>
+                <li>Conditions - <strong>Web service name exists</strong></li>
+                <li><strong>Toggle</strong> - Spilt by dimension</li>
+                <li>Dimension value pattern - <strong>{RequestAttribute:LoyaltyStatus}</strong></li>
+                <li>Dimension name - <strong>LoyaltyStatus</strong></li>
+            </ul>
+            <p>You&#39;ll be able to preview the various dimensions across defined services</p>
+            <p class="image-container"><img alt="Session-properties" src="img/ab891b22d27f3d.png"></p>
+        </google-codelab-step>
+        <google-codelab-step label="Dashboards" duration="15">
+            <p>Refer to the left navigation bar and go to Dashboards. Dynatrace has now prebuilt dashboard templates such as <strong>Application performance report</strong> and <strong>Real User Monitoring</strong> dashboards.</p>
+            <p class="image-container"><img alt="Dashboards" src="img/86c6cf8398494a26.png"></p>
+            <p>Drill down into each of these dashboards and explore the various dashboard widgets for App Owners and Business Users.</p>
+            <p class="image-container"><img alt="Session-properties" src="img/c6a7cd4305bfa6a.png"></p>
+        </google-codelab-step>
+        <google-codelab-step label="Feedback" duration="3">
+            <p>We hope you enjoyed this lab and found it useful. We would love your feedback! </p>
+            <google-codelab-survey survey-id="advanced-observability-1">
+                <h4>How was your overall experience with this lab?</h4>
+                <paper-radio-group>
+                    <paper-radio-button>Excellent</paper-radio-button>
+                    <paper-radio-button>Good</paper-radio-button>
+                    <paper-radio-button>Average</paper-radio-button>
+                    <paper-radio-button>Fair</paper-radio-button>
+                    <paper-radio-button>Poor</paper-radio-button>
+                </paper-radio-group>
+            </google-codelab-survey>
+            <google-codelab-survey survey-id="advanced-observability-2">
+                <h4>What did you benefit most from this lab?</h4>
+                <paper-radio-group>
+                    <paper-radio-button>Understanding Real User Monitoring setup</paper-radio-button>
+                    <paper-radio-button>Learning Synthetic</paper-radio-button>
+                    <paper-radio-button>Learning Session Replay</paper-radio-button>
+                    <paper-radio-button>Learning User Session Query Language</paper-radio-button>
+                </paper-radio-group>
+            </google-codelab-survey>
+            <google-codelab-survey survey-id="advanced-observability-3">
+                <h4>How likely are you to recommend this lab to a friend or colleague?</h4>
+                <paper-radio-group>
+                    <paper-radio-button>Very Likely</paper-radio-button>
+                    <paper-radio-button>Moderately Likely</paper-radio-button>
+                    <paper-radio-button>Neither Likely nor unlikely</paper-radio-button>
+                    <paper-radio-button>Moderately Unlikely</paper-radio-button>
+                    <paper-radio-button>Very Unlikely</paper-radio-button>
+                </paper-radio-group>
+            </google-codelab-survey>
+            <aside class="special">
+                <p>💡 For other ideas and suggestions, please <a href="mailto:APAC-SE-Central@dynatrace.com?subject=Kubernetes Workshop - Ideas and Suggestions" target="_blank"><strong>reach out via email</strong></a>.</p>
+            </aside>
+        </google-codelab-step>
+    </google-codelab>
+    <script src="../../elements/codelab-elements/native-shim.js"></script>
+    <script src="../../elements/codelab-elements/custom-elements.min.js"></script>
+    <script src="../../elements/codelab-elements/prettify.js"></script>
+    <script src="../../elements/codelab-elements/codelab-elements.js"></script>
+    <script src="//support.google.com/inapp/api.js"></script>
+</body>
+</html>

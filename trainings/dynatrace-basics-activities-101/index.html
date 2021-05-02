@@ -1,0 +1,210 @@
+
+<!doctype html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#4F7DC9">
+    <meta charset="UTF-8">
+    <title>Dynatrace Basics - Lab Activities 101</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../../elements/codelab-elements/codelab-elements.css">
+    <style>
+        .success {
+            color: #1e8e3e;
+        }
+
+        .error {
+            color: red;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        h1 h2 h3 {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid=""
+                    id="dynatrace-basics-activities-101"
+                    title="Dynatrace Basics - Lab Activities 101"
+                    environment="web"
+                    feedback-link="https://thetechnologist.in">
+
+        <google-codelab-step label="Getting Started" duration="2">
+            <p class="image-container"><img alt="dynatrace-logo" src="img\ffc109b4606e0e0a.png"></p>
+            <p>Hello, 👋 Welcome to Dynatrace training. We know it has been a long journey for you to get to here. It is all like, getting education atleast for 15 years and jumping into job and finding your ways to stick to one domain. We appreciate the effort and we respect you immensely. Thank you for taking this training. From Dynatrace India, we wish yuo all the best and keep learning. We are here to help you anytime. If you have questions or if you need any help, please raise an issue in our public GitHub repository. We will addres it for you as soon as we can.</p>
+            <h2 is-upgraded>User repository</h2>
+            <ol type="1">
+                <li>Here is the link for the repository: <a href="https://github.com/Dynatrace-India/Dynatrace-Training/issues" target="_blank">https://github.com/Dynatrace-India/Dynatrace-Training/issues</a></li>
+                <li>Checkout Dynatrace Official Help: <a href="https://www.dynatrace.com/support/help/" target="_blank">https://www.dynatrace.com/support/help/</a></li>
+            </ol>
+            <aside class="warning">
+                <p>Note that please use this repository only if you are really passionate to learn about Dynatrace. This is an initiative from Dynatrace India ACE team to help people who are curious.</p>
+            </aside>
+            <h2 is-upgraded>What&#39;s in here</h2>
+            <ul>
+                <li>List of training activities with instructions</li>
+                <li>Explaination about the terms that are new</li>
+                <li>Some documentation links to help you learn more</li>
+                <li>Closing charts</li>
+            </ul>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="What you&#39;ll learn" duration="1">
+            <h2 is-upgraded>List of activities</h2>
+            <ul>
+                <li>Setting Up Lab Environment</li>
+                <li>Install Dynatrace OneAgent</li>
+                <li>What happens during the installation of OneAgent?</li>
+                <li>Smartscape</li>
+                <li>Installing ActiveGate</li>
+                <li>Activity: Practice</li>
+            </ul>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="Activity: Setting-up lab environment" duration="10">
+            <p>In this training lab, we have provided you with 2 VMs which will be used for lab activities. Hence, before starting the training please get to know your credentials and that are sent to you to your email personally along with RDP files to connect to VMs.</p>
+            <h2 is-upgraded>Lab Activity</h2>
+            <ol type="1">
+                <li>Sign in to your mail box and find an email with RDP files and password to access them.</li>
+                <li>Once login is complete, use another email that you have received from <strong>notifications-dynatrace</strong> and login to dedicated Dynatrace environment for training.</li>
+                <li>If you want to access anytime after setting password to your DT Environment, please use this link <a href="https://bit.ly/dt-transform" target="_blank">https://bit.ly/dt-transform</a></li>
+                <li>Raise your hand if you are able to set up environment and access virtual machines.</li>
+                <li>Using this link, <a href="https://community.dynatrace.com/community/display/DL/Demo+Applications+-+easyTravel#DemoApplications-easyTravel-Download(Installer+License" target="_blank">EasyTravel</a>) please download Windows version of the application (x64) and install it in both your VMs.</li>
+                <li>Start easyTravel via the UI, clicking on Dynatrace Production Standard.</li>
+                <li>This will ensure that the application is running. you can make sure by visiting the site the is shown in the window of EasyTravel.</li>
+                <li>Congratulations! Now you are ready to implement and move forward with the training.</li>
+            </ol>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="Activity: Installing Dynatrace OneAgent" duration="15">
+            <h2 is-upgraded>Accessing Dynatrace Environment</h2>
+            <ul>
+                <li>Access your environment by going to this link, <a href="https://bit.ly/dt-transform" target="_blank">https://bit.ly/dt-transform</a></li>
+                <li>Login with your credentials</li>
+                <li>Go to Dynatrace Hub</li>
+            </ul>
+            <h2 is-upgraded>Installing OneAgent</h2>
+            <ul>
+                <li>In Dynatrace Hub, search for OneAgent and click on the card to access OneAgent details page</li>
+                <li>Click on Download OneAgent button and it will take you to the screen where you have to choose the OS.</li>
+                <li>Go ahead and select Windows.</li>
+                <li>
+                    Download the installer. There are two options:  <ul>
+                        <li>Click the Download Installer button to download the Windows installer (EXE file) for single-server installation.</li>
+                        <li>The OneAgent Windows EXE installer is preconfigured for your environment. If you need to customize it, you can add add the installation parameters at a Windows command line. You can also add the <code>--set-param=&lt;value&gt;</code> parameters on the Configure OneAgent settings installer screen.</li>
+                        <li>For more information, see Customize OneAgent installation on Windows</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="image-container"><img alt="OneAgent_Installation_Screen" src="img\30763d601ef44e23.png"></p>
+            <ul>
+                <li>Run the executable file and follow the displayed instructions. If your environment is segmented, for example into development and production, consider organizing your hosts into host groups. To do this, select the Set host group for this host option and provide a name. If the name you enter exists already, the host will be added to the group with this name. If you provide a new name, a new host group will be created. The EXE installer provides a quiet mode. Simply use it with command-line <code>--quiet</code> parameter.</li>
+                <li>Restart all processes that you want to monitor. You&#39;ll be prompted with a list of the processes that need to be restarted. Note that you can restart your processes at any time, even during your organization&#39;s next planned maintenance period. Though until all processes have been restarted, you&#39;ll only see a limited set of metrics, for example CPU or memory consumption.</li>
+            </ul>
+            <h2 is-upgraded>Next steps</h2>
+            <ul>
+                <li>Access the Deployment Status screen.</li>
+                <li>Stop and restart easyTravel UI.</li>
+            </ul>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="What happens during the installation of OneAgent?" duration="0">
+            <p>During the installation process, the installer</p>
+            <ul>
+                <li>Installs executable code and libraries that are used by OneAgent.</li>
+                <li>Creates entries in the Windows Registry that start OneAgent as a SYSTEM service. Additionally, the oneagentmon device and WinPcap are installed to allow better integration with the operating system and to facilitate the capture of network statistics.</li>
+                <li>Checks the system&#39;s global proxy settings.</li>
+                <li>Checks for a connection to Dynatrace Server or ActiveGate (if you installed ActiveGate and downloaded the OneAgent installer after ActiveGate was connected to Dynatrace).</li>
+                <li>
+                    <code>OneAgent 1.193 and earlier</code> Creates its own user (dtuser) to run OneAgent extensions. This user is a member of the Performance Monitoring Users group, and can only log in as a service. The password is randomly generated during installation and stored encrypted. You can&#39;t change the password. For security purposes, the dtuser is not allowed to:  <ul>
+                        <li>Access computer from the network.</li>
+                        <li>Log in as a batch job.</li>
+                        <li>Log in locally.</li>
+                        <li>Log in through Remote Desktop Services.</li>
+                        <li>The dtuser is required for Dynatrace to operate properly, therefore you must not delete it. If, for some reason, the dtuser was deleted, next update will recreate it.</li>
+                    </ul>
+                </li>
+                <li><code>OneAgent 1.195+</code> For fresh OneAgent 1.195+ installations, the default <code>LocalSystem account</code> is used to run OneAgent extensions. For a summarized view of the changes made to your system by OneAgent installation, see <a href="https://www.dynatrace.com/support/help/technology-support/operating-systems/windows/installation/oneagent-security-windows/" target="_blank">OneAgent security on Windows</a>.</li>
+            </ul>
+            <aside class="special">
+                <p>For more details on the installation, please go through this link from Dynatrace help on <a href="https://www.dynatrace.com/support/help/technology-support/operating-systems/windows/installation/install-oneagent-on-windows/#expand-what-happens-during-installation-3846" target="_blank">Install OneAgent on Windows</a></p>
+            </aside>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="Activity: Smartscape" duration="10">
+            <p class="image-container"><img alt="Smartscape" src="img\70117a9990730970.png"></p>
+            <ul>
+                <li>Select a host. Observe the processes associated with the host selected.</li>
+                <li>Select the Apache Tomcat process. Note how many services are attached.</li>
+                <li>Click a service. Note the difference in the Smartscape.</li>
+                <li>Click the arrow. The Services Overview page displays.</li>
+                <li>Click Smartscape view.</li>
+            </ul>
+            <aside class="special">
+                <p>For more instructions on Smartscape, please go through Dynatrace help on <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/smartscape/" target="_blank">Smartscape</a>.</p>
+            </aside>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="Activity: Installing ActiveGate" duration="10">
+            <ul>
+                <li>Navigate to Dynatrace Hub &gt; ActiveGate &gt; Install ActiveGate &gt; Windows</li>
+                <li>Download the Installer - Windows.</li>
+                <li>Run the installer on the host(s) where the ActiveGate(s) will run.</li>
+                <li>
+                    ActiveGate Runs within your data center  <ul>
+                        <li>For Agent traffic bundling</li>
+                        <li>For remote plugin execution</li>
+                        <li>Storing memory dumps</li>
+                    </ul>
+                </li>
+                <li>Already connected Agents automatically reroute through AG when found.</li>
+            </ul>
+            <aside class="special">
+                <p>For more details on Installation of ActiveGate, visit this link <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/installation/windows/windows-install-an-environment-activegate/" target="_blank">Install an Environment ActiveGate on Windows</a></p>
+            </aside>
+
+
+        </google-codelab-step>
+
+        <google-codelab-step label="Activity: Practice" duration="10">
+            <ul>
+                <li>Navigate to the Home Dashboard</li>
+                <li>Access the tiles available, and record what you are able to view.</li>
+                <li>Filter the dashboard based on the last 1 hour. Notice how the dashboard data changes.</li>
+                <li>Access the Smartscape from the Dashboard, locate easyTravel and note the services, processes, hosts, and data centers connected.</li>
+                <li>Access an Apache Tomcat host via the home dashboard. Note the CPU usage.</li>
+            </ul>
+
+
+        </google-codelab-step>
+
+    </google-codelab>
+
+    <script src="../../elements/codelab-elements/native-shim.js"></script>
+    <script src="../../elements/codelab-elements/custom-elements.min.js"></script>
+    <script src="../../elements/codelab-elements/prettify.js"></script>
+    <script src="../../elements/codelab-elements/codelab-elements.js"></script>
+    <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
