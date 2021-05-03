@@ -5,6 +5,7 @@ tags: dynatrace-india, trainings
 status: Draft 
 authors: Vishruth Harithsa
 Feedback Link: https://thetechnologist.in
+Analytics Account: G-59D7VS39H4
 
 
 # Dynatrace Basics - Lab Activities 101
