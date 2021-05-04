@@ -13,7 +13,7 @@ Analytics Account: G-59D7VS39H4
 ## Getting Started
 Duration: 2
 
-![dynatrace-logo](assets/logo.png)
+![dynatrace-logo](assets/basics_101/logo.png)
 
 Hello, 👋 Welcome to Dynatrace training. We know it has been a long journey for you to get to here. It is all like, getting education atleast for 15 years and jumping into job and finding your ways to stick to one domain. We appreciate the effort and we respect you immensely. Thank you for taking this training. From Dynatrace India, we wish yuo all the best and keep learning. We are here to help you anytime. If you have questions or if you need any help, please raise an issue in our public GitHub repository. We will addres it for you as soon as we can. 
 
@@ -35,12 +35,15 @@ Negative
 Duration: 1
 
 ### List of activities
-- Setting Up Lab Environment
-- Install Dynatrace OneAgent
-- What happens during the installation of OneAgent?
-- Smartscape
-- Installing ActiveGate
-- Activity: Practice
+1. Setting Up Lab Environment
+1. Activity: Install Dynatrace OneAgent
+1. What happens during the installation of OneAgent?
+1. Activity: Smartscape
+1. Activity: Installing activeGate
+1. Activity: Practice
+1. Activity: Application configuration
+1. Activity: User actions in EasyTravel
+1. Activity: Define Conversion Goals
 
 <!-- ------------------------ -->
 ## Activity: Setting-up lab environment
@@ -76,7 +79,7 @@ Duration: 15
 	- The OneAgent Windows EXE installer is preconfigured for your environment. If you need to customize it, you can add add the installation parameters at a Windows command line. You can also add the ```--set-param=<value>``` parameters on the Configure OneAgent settings installer screen.
 	- For more information, see Customize OneAgent installation on Windows
 
-![OneAgent_Installation_Screen](assets/oa.png)
+![OneAgent_Installation_Screen](assets/basics_101/oa.png)
 
 - Run the executable file and follow the displayed instructions. If your environment is segmented, for example into development and production, consider organizing your hosts into host groups. To do this, select the Set host group for this host option and provide a name. If the name you enter exists already, the host will be added to the group with this name. If you provide a new name, a new host group will be created. The EXE installer provides a quiet mode. Simply use it with command-line ```--quiet``` parameter.
 - Restart all processes that you want to monitor. You’ll be prompted with a list of the processes that need to be restarted. Note that you can restart your processes at any time, even during your organization’s next planned maintenance period. Though until all processes have been restarted, you’ll only see a limited set of metrics, for example CPU or memory consumption.
@@ -111,7 +114,7 @@ Positive
 ## Activity: Smartscape
 Duration: 10
 
-![Smartscape](assets/smartscape.png)
+![Smartscape](assets/basics_101/smartscape.png)
 
 - Select a host. Observe the processes associated with the host selected. 
 - Select the Apache Tomcat process. Note how many services are attached.
@@ -147,3 +150,133 @@ Duration: 10
 - Filter the dashboard based on the last 1 hour. Notice how the dashboard data changes. 
 - Access the Smartscape from the Dashboard, locate easyTravel and note the services, processes, hosts, and data centers connected. 
 - Access an Apache Tomcat host via the home dashboard. Note the CPU usage. 
+
+<!-- ------------------------ -->
+## Activity: Application Configuration
+Duration: 15
+
+### Steps
+- Go to ```Settings``` -> ```Web & mobile monitoring``` -> ```Application detection & RUM```
+- Under Application detection rules, click Create application detection rule
+- Set the following:
+	- New application
+	- Provide a name. e.g. ```“EasyTravel - Production”```
+	- “If the URL” and “contains...” followed by the URL of your Windows VM
+- Repeat the steps for another Application detection rule
+	- New application
+	- Provide a name. e.g. ```“EasyTravel - Development”```
+	- “If the URL” and “contains...” followed by the URL of your Windows VM
+
+![Application rule detection Image](assets/basics_101/appdetection.png)
+
+### Alternate way
+- You can also create an application in a pretty straight forward way by visiting the ```My web application```.
+- Navigate to ```Applications``` from tyhe global menu
+- Go to ```My web application``` and scroll through the bottom of the page and find the top 3 domains section.
+- In here you will find all the domain names that Dynatrace detected.
+- Click on ```View full details```
+- In the Transfer domain column, use the arrow to expand the domain which you want to create application for, 
+
+![Top Domains](assets/basics_101/appdetection2.png)
+
+- Click on ```Create new application``` and new application will be created with the domain name you selected. 
+- Navigate to the application and rename the application to ```Easytravel - <Environemnt>```
+
+Positive
+: Please note that this feature of Creating new application is added by recent releasses and in this you can also map different domains and transfer them to the application. 
+
+<!-- ------------------------ -->
+## Activity: Monitor your application
+Durattion: 15
+
+### Monitor through
+![Real User Monitoring Dashboard](assets/basics_101/rumdashboard.png)
+- Go to your ```Real User Monitoring``` dashboard. Take a moment to review the tiles and the information displayed.
+- Drill into the Application health tile.
+	- Review the information available in the table.
+	- Drill into the EasyTravel application. Review the tables and charts available.
+	- Click different options available under Load Actions/XHR actions such as:
+	- Median, slowest, fastest 
+	- Show/hide options in the charts: User action duration, actions/ min
+	- Click to see ‘Compare to previous time frame’ and ‘Analyze performance’
+	- Analyze different time frames by changing the global timeframe selector.
+- Return to the dashboard. What can you see in the Worldmap under Application Health?
+	- What additional information can you see when you drill into the Worldmap?
+- Click Applications in the main navigation menu. Where has this taken you?
+- Change from generated visits to manual visits in easyTravel.
+
+### Enabling Framework monitoring
+- To enable framework monitoring like, AngularJS, ReactJs, jQuery and to capture XHR actions of your application, please follow the steps.
+- Go to the application, click on ```...``` -> ```Edit``` -> ```Capturing``` -> ```Async web requests and SPAs```.
+- Please enable the required frameworks support.
+- Supported frameworks that require enabling will be shown there itself.
+- Enable them and for generic support you need to enable ```XmlHttpRequest``` and ```fetch()``` and then save the settings.
+
+![Frameworks](assets/basics_101/frameworksupport.png)
+
+Negative
+: Please note that enabling frameworks support will increase the load time of the page and header value will increase. If you have any restrictions on injection of extra header due to security purpose in your organisation, take help from experts of refer the documentation, [Real User Monitoring](https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/#how-to-use-real-user-monitoring)
+
+<!-- ------------------------ -->
+## Activity: User actions in EasyTravel
+Duration: 5
+
+### Validate User actions
+- Access easyTravel using the IP address provided.
+- Search for and book a trip. 
+- Visit the EasyTravel URLs using your cell phone. 
+- Search for a second trip, review its contents and then leave the site. 
+
+Positive
+: Visiting EasyTravel from your handheld device will be tracked by Dynatrace as well. In application overview you can see the user visiting from mobile browsers. 
+
+<!-- ------------------------ -->
+## Activity: Define Conversion Goals
+Duration: 5
+
+### Defining goals
+- Access easyTravel and book a few trips using different user accounts.
+- Create a conversion goal for a user booking a trip: 
+	- Name: ```Trip Booked```
+	- Type: ```User Action```
+	- Rule ```applies to: Load actions```
+	- Rule: ```Page URL contains orange-booking-finish```
+- Access easyTravel and book some additional trips.
+- Filter user sessions by conversion goal.
+- Drill down into the session, events and actions. 
+
+Negative
+: In order to reflect conversion goals in the Dynatrace portal, you need to perform the complete transactions for atleast 5 times. After a while conversion goal will be reflected. This is useful in defining SLO in Dynatrace too. 
+
+<!-- ------------------------ -->
+## Activity: Create a Key User Action
+Duration: 5
+
+### Mark the action
+- Open your application. 
+- Find the Top 3 User Actions and look for the action Loading of page /orange-booking-finish.jsf
+	- You may need to drill into “View full details” to find it in the list of Top 100 user actions.
+- Open the action and select “Mark as key user action”
+- Pin the action to your Dashboard.
+
+## Activity: Locate your user session data
+Duration: 15
+
+### See your data
+- In the main navigation menu, click User sessions.
+- Review the data for the last 2 hours and then the last 30 minutes.
+- Drill into a user session entry. Review the following by clicking in the graphic:
+	- Location
+	- Type of devices used
+- Expand one of the sessions for this user. Hover over each point in the chart to review their action at that point.
+- Click on one of the points to explore that action in more detail.
+- While exploring the User sessions note:
+	- How does the view change? 
+	- What type of actions were performed?
+	- Was the user satisfied? 
+- In a Load action, click ```“Perform waterfall analysis”```
+- Explore the chart and the options available.
+
+Positive
+: To know more about applications and how front end captures the we request timing in Waterfall analysis, please refer to the MDN docs on Web request timing, [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API). Also, please refer to the official Dynatrace Help on, [Waterfall analysis](https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/how-to-use-real-user-monitoring/web-applications/waterfall-analysis/)
+
