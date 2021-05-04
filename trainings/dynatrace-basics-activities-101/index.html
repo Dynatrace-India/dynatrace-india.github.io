@@ -7,7 +7,10 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <!--Adding Monitoring Snippet-->
-  <script type="text/javascript" src="https://trn567.dynatrace-managed.com:9999/jstag/managed/c08a8ab3-83c9-4efe-8903-73ed21722e70/6b617a3e7e9dd614_complete.js" crossorigin="anonymous"></script>
+  <script type="text/javascript"
+    src="https://trn567.dynatrace-managed.com:9999/jstag/managed/c08a8ab3-83c9-4efe-8903-73ed21722e70/6b617a3e7e9dd614_complete.js"
+    crossorigin="anonymous"></script>
+
   <title>Dynatrace Basics - Lab Activities 101</title>
   <link rel="stylesheet"
     href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
@@ -71,14 +74,17 @@
 
     <google-codelab-step label="What you&#39;ll learn" duration="1">
       <h2 is-upgraded>List of activities</h2>
-      <ul>
+      <ol type="1">
         <li>Setting Up Lab Environment</li>
-        <li>Install Dynatrace OneAgent</li>
+        <li>Activity: Install Dynatrace OneAgent</li>
         <li>What happens during the installation of OneAgent?</li>
-        <li>Smartscape</li>
-        <li>Installing ActiveGate</li>
+        <li>Activity: Smartscape</li>
+        <li>Activity: Installing activeGate</li>
         <li>Activity: Practice</li>
-      </ul>
+        <li>Activity: Application configuration</li>
+        <li>Activity: User actions in EasyTravel</li>
+        <li>Activity: Define Conversion Goals</li>
+      </ol>
 
 
     </google-codelab-step>
@@ -239,6 +245,189 @@
           data centers connected.</li>
         <li>Access an Apache Tomcat host via the home dashboard. Note the CPU usage.</li>
       </ul>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Application Configuration" duration="15">
+      <h2 is-upgraded>Steps</h2>
+      <ul>
+        <li>Go to <code>Settings</code> -&gt; <code>Web &amp; mobile monitoring</code> -&gt;
+          <code>Application detection &amp; RUM</code></li>
+        <li>Under Application detection rules, click Create application detection rule</li>
+        <li>Set the following: <ul>
+            <li>New application</li>
+            <li>Provide a name. e.g. <code>&#34;EasyTravel - Production&#34;</code></li>
+            <li>&#34;If the URL&#34; and &#34;contains...&#34; followed by the URL of your Windows VM</li>
+          </ul>
+        </li>
+        <li>Repeat the steps for another Application detection rule <ul>
+            <li>New application</li>
+            <li>Provide a name. e.g. <code>&#34;EasyTravel - Development&#34;</code></li>
+            <li>&#34;If the URL&#34; and &#34;contains...&#34; followed by the URL of your Windows VM</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="image-container"><img alt="Application rule detection Image" src="img\bebb08b98764a7b2.png"></p>
+      <h2 is-upgraded>Alternate way</h2>
+      <ul>
+        <li>You can also create an application in a pretty straight forward way by visiting the
+          <code>My web application</code>.</li>
+        <li>Navigate to <code>Applications</code> from tyhe global menu</li>
+        <li>Go to <code>My web application</code> and scroll through the bottom of the page and find the top 3 domains
+          section.</li>
+        <li>In here you will find all the domain names that Dynatrace detected.</li>
+        <li>Click on <code>View full details</code></li>
+        <li>In the Transfer domain column, use the arrow to expand the domain which you want to create application for,
+        </li>
+      </ul>
+      <p class="image-container"><img alt="Top Domains" src="img\20434223b8631a.png"></p>
+      <ul>
+        <li>Click on <code>Create new application</code> and new application will be created with the domain name you
+          selected.</li>
+        <li>Navigate to the application and rename the application to <code>Easytravel - &lt;Environemnt&gt;</code></li>
+      </ul>
+      <aside class="special">
+        <p>Please note that this feature of Creating new application is added by recent releasses and in this you can
+          also map different domains and transfer them to the application.</p>
+      </aside>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Monitor your application" duration="0">
+      <p>Durattion: 15</p>
+      <h2 is-upgraded>Monitor through</h2>
+      <p class="image-container"><img alt="Real User Monitoring Dashboard" src="img\e7f231f2824af92c.png"></p>
+      <ul>
+        <li>Go to your <code>Real User Monitoring</code> dashboard. Take a moment to review the tiles and the
+          information displayed.</li>
+        <li>Drill into the Application health tile. <ul>
+            <li>Review the information available in the table.</li>
+            <li>Drill into the EasyTravel application. Review the tables and charts available.</li>
+            <li>Click different options available under Load Actions/XHR actions such as:</li>
+            <li>Median, slowest, fastest</li>
+            <li>Show/hide options in the charts: User action duration, actions/ min</li>
+            <li>Click to see ‘Compare to previous time frame&#39; and ‘Analyze performance&#39;</li>
+            <li>Analyze different time frames by changing the global timeframe selector.</li>
+          </ul>
+        </li>
+        <li>Return to the dashboard. What can you see in the Worldmap under Application Health? <ul>
+            <li>What additional information can you see when you drill into the Worldmap?</li>
+          </ul>
+        </li>
+        <li>Click Applications in the main navigation menu. Where has this taken you?</li>
+        <li>Change from generated visits to manual visits in easyTravel.</li>
+      </ul>
+      <h2 is-upgraded>Enabling Framework monitoring</h2>
+      <ul>
+        <li>To enable framework monitoring like, AngularJS, ReactJs, jQuery and to capture XHR actions of your
+          application, please follow the steps.</li>
+        <li>Go to the application, click on <code>...</code> -&gt; <code>Edit</code> -&gt; <code>Capturing</code> -&gt;
+          <code>Async web requests and SPAs</code>.</li>
+        <li>Please enable the required frameworks support.</li>
+        <li>Supported frameworks that require enabling will be shown there itself.</li>
+        <li>Enable them and for generic support you need to enable <code>XmlHttpRequest</code> and <code>fetch()</code>
+          and then save the settings.</li>
+      </ul>
+      <p class="image-container"><img alt="Frameworks" src="img\e2edd4972455d4ba.png"></p>
+      <aside class="warning">
+        <p>Please note that enabling frameworks support will increase the load time of the page and header value will
+          increase. If you have any restrictions on injection of extra header due to security purpose in your
+          organisation, take help from experts of refer the documentation, <a
+            href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/#how-to-use-real-user-monitoring"
+            target="_blank">Real User Monitoring</a></p>
+      </aside>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: User actions in EasyTravel" duration="5">
+      <h2 is-upgraded>Validate User actions</h2>
+      <ul>
+        <li>Access easyTravel using the IP address provided.</li>
+        <li>Search for and book a trip.</li>
+        <li>Visit the EasyTravel URLs using your cell phone.</li>
+        <li>Search for a second trip, review its contents and then leave the site.</li>
+      </ul>
+      <aside class="special">
+        <p>Visiting EasyTravel from your handheld device will be tracked by Dynatrace as well. In application overview
+          you can see the user visiting from mobile browsers.</p>
+      </aside>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Define Conversion Goals" duration="5">
+      <h2 is-upgraded>Defining goals</h2>
+      <ul>
+        <li>Access easyTravel and book a few trips using different user accounts.</li>
+        <li>Create a conversion goal for a user booking a trip: <ul>
+            <li>Name: <code>Trip Booked</code></li>
+            <li>Type: <code>User Action</code></li>
+            <li>Rule <code>applies to: Load actions</code></li>
+            <li>Rule: <code>Page URL contains orange-booking-finish</code></li>
+          </ul>
+        </li>
+        <li>Access easyTravel and book some additional trips.</li>
+        <li>Filter user sessions by conversion goal.</li>
+        <li>Drill down into the session, events and actions.</li>
+      </ul>
+      <aside class="warning">
+        <p>In order to reflect conversion goals in the Dynatrace portal, you need to perform the complete transactions
+          for atleast 5 times. After a while conversion goal will be reflected. This is useful in defining SLO in
+          Dynatrace too.</p>
+      </aside>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create a Key User Action" duration="5">
+      <h2 is-upgraded>Mark the action</h2>
+      <ul>
+        <li>Open your application.</li>
+        <li>Find the Top 3 User Actions and look for the action Loading of page /orange-booking-finish.jsf <ul>
+            <li>You may need to drill into &#34;View full details&#34; to find it in the list of Top 100 user actions.
+            </li>
+          </ul>
+        </li>
+        <li>Open the action and select &#34;Mark as key user action&#34;</li>
+        <li>Pin the action to your Dashboard.</li>
+      </ul>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Locate your user session data" duration="15">
+      <h2 is-upgraded>See your data</h2>
+      <ul>
+        <li>In the main navigation menu, click User sessions.</li>
+        <li>Review the data for the last 2 hours and then the last 30 minutes.</li>
+        <li>Drill into a user session entry. Review the following by clicking in the graphic: <ul>
+            <li>Location</li>
+            <li>Type of devices used</li>
+          </ul>
+        </li>
+        <li>Expand one of the sessions for this user. Hover over each point in the chart to review their action at that
+          point.</li>
+        <li>Click on one of the points to explore that action in more detail.</li>
+        <li>While exploring the User sessions note: <ul>
+            <li>How does the view change?</li>
+            <li>What type of actions were performed?</li>
+            <li>Was the user satisfied?</li>
+          </ul>
+        </li>
+        <li>In a Load action, click <code>&#34;Perform waterfall analysis&#34;</code></li>
+        <li>Explore the chart and the options available.</li>
+      </ul>
+      <aside class="special">
+        <p>To know more about applications and how front end captures the we request timing in Waterfall analysis,
+          please refer to the MDN docs on Web request timing, <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API" target="_blank">Navigation
+            Timing API</a>. Also, please refer to the official Dynatrace Help on, <a
+            href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/how-to-use-real-user-monitoring/web-applications/waterfall-analysis/"
+            target="_blank">Waterfall analysis</a></p>
+      </aside>
 
 
     </google-codelab-step>
