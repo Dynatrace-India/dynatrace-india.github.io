@@ -286,6 +286,24 @@ Positive
 : To know more about applications and how front end captures the we request timing in Waterfall analysis, please refer to the MDN docs on Web request timing, [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API). Also, please refer to the official Dynatrace Help on, [Waterfall analysis](https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/how-to-use-real-user-monitoring/web-applications/waterfall-analysis/)
 
 <!-- ------------------------ -->
+## Activitiy: Build a DevOps Dashboard
+Duration: 15
+
+### Create a Dashboard
+1. Create a new dashboard called ```“DevOps”```
+1. Create a section called ```“Applications”``` and add the following tiles:
+	- ```Application Health (number version)```, ```Synthetic monitor health```, ```Application Health (graph version)```, ```Resources – Load Time```
+	- ```Mobile App```, ```Application```, ```Browser monitor```
+1. Create a section called “Services” and add the following tiles:
+	- ```Service health```, ```Databases```
+	- Select the top two services and add tiles for Service or request
+1. Create a section called “Infrastructure” and add the following tiles:
+	- ```Host health```, ```Docker```, ```Network Status```, ```Network Metrics```
+1. Save the dashboard. 
+1. Return to your ```Real User Monitoring``` dashboard. Access your Key User Actions tile and pin it to your new dashboard. 
+
+
+<!-- ------------------------ -->
 ## Activity: Create a Browser Monitor
 Duration: 8
 
