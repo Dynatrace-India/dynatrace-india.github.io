@@ -44,6 +44,10 @@ Duration: 1
 1. Activity: Application configuration
 1. Activity: User actions in EasyTravel
 1. Activity: Define Conversion Goals
+1. Activity: Create a Browser Monitor
+1. Activity: Create an Clickpath Monitor
+1. Activity: Install a Synthetic-enabled ActiveGate
+1. Activity: Add a private location
 
 <!-- ------------------------ -->
 ## Activity: Setting-up lab environment
@@ -259,6 +263,7 @@ Duration: 5
 - Open the action and select “Mark as key user action”
 - Pin the action to your Dashboard.
 
+<!-- ------------------------ -->
 ## Activity: Locate your user session data
 Duration: 15
 
@@ -280,3 +285,71 @@ Duration: 15
 Positive
 : To know more about applications and how front end captures the we request timing in Waterfall analysis, please refer to the MDN docs on Web request timing, [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API). Also, please refer to the official Dynatrace Help on, [Waterfall analysis](https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/how-to-use-real-user-monitoring/web-applications/waterfall-analysis/)
 
+<!-- ------------------------ -->
+## Activity: Create a Browser Monitor
+Duration: 8
+
+### Create Synthetic Monitor
+- Select Synthetic from the menu.
+- Click Create a synthetic monitor.
+- Click Create a browser monitor.
+- On the Configure a synthetic monitor page, type in the URL you want to monitor and give it a unique name.
+Configure your monitor appropriately, including selecting the profile of your emulated device, choosing monitor frequency and locations, and other settings.
+- Click view monitor summary.
+- Click create browser monitor.
+
+![Browser Synthetic Ovwerview](assets/basics_101/browser_monitor.png)
+
+<!-- ------------------------ -->
+## Activity: Create an Clickpath Monitor
+Duration: 20
+
+### Follow these steps
+1. Install the Dynatrace Synthetic Recorder extension
+	- Select Synthetic from the navigation menu.
+	- Click ```Create a synthetic monitor``` > ```Create a browser monitor```.
+	- First-time users are asked to install the Chrome extension. Click ```Install Dynatrace recorder``` at the bottom of the page.
+	- On the extension page, click ```Add to Chrome``` > ```Add Extension```.
+	- Once the extension is added, please allow it in ```Incognito mode``` as well. 
+1. Navigate to Synthetic.
+1. Click ```Create a synthetic monitor```.
+1. Click ```Create a browser monitor```.
+1. Enter a valid URL.
+1. Check the default name for your clickpath on the Configure a browser monitor page.
+1. Record a browser clickpath.
+	- Select ```Synthetic``` from the navigation menu.
+	- Click the ```Create a synthetic monitor``` button.
+	- Click ```Create a browser monitor```.
+	- Enter a valid URL and check the default Name for your clickpath on the ```Configure a browser monitor``` page.
+1. Continue to configure the monitor—device profile, frequency, monitoring locations, and other options such as cookies and automated login. 
+1. Click Record clickpath.
+1. When done, click the Dynatrace extension icon on your browser's menu bar to see a list of recorded events and Finish recording.
+1. Playback your clickpath. 
+
+<!-- ------------------------ -->
+## Activity: Install a Synthetic-enabled ActiveGate
+Duration: 15
+
+### Installing ActiveGate with SYnthetic Enabled
+1. For Environment ActiveGate, from the navigation menu, select ```Deploy Dynatrace``` > ```Install ActiveGate```. 
+1. Select the operating system and follow the on-screen instructions.
+1. For ```What's the purpose of this ActiveGate?```, select Run synthetic monitors from a private location.
+1. Download the installer
+1. Install the ActiveGate in the VM/Machine using command line by pasting the command that is generated in the belo step of Installation page in Dynatrace. 
+
+<!-- ------------------------ -->
+## Activity: Add a private location
+Duration: 5
+
+### Add Synthetic Location
+- In the Dynatrace web UI, go to ```Settings``` > ```Web & mobile monitoring``` > ```Private synthetic locations```.
+- Select ```Create location```.
+- Give your location a custom Name, for example ```DT Training office```.
+- Map it from an existing geographic location or add a new one. This is defined by Region, City, and Geographic coordinates.
+
+![Adding Private Synthetic Location](assets/basics_101/private_synthetic.png)
+
+- Add the ```Synthetic-enabled ActiveGate``` you've just installed to the location.
+- Select ```Add```.
+- Select ``Save```.
+- Now you can change the location to the newly added private location in your Synthetic monitors from the ones you have created previously. 
