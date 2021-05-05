@@ -10,30 +10,12 @@
   <script type="text/javascript"
     src="https://trn567.dynatrace-managed.com:9999/jstag/managed/c08a8ab3-83c9-4efe-8903-73ed21722e70/6b617a3e7e9dd614_complete.js"
     crossorigin="anonymous"></script>
-
   <title>Dynatrace Basics - Lab Activities 101</title>
   <link rel="stylesheet"
     href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../../elements/codelab-elements/codelab-elements.css">
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="images/favicons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="images/favicons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
-  <link rel="manifest" href="images/favicons/manifest.json">
-  <meta name="msapplication-TileColor" content="#455a64">
-  <meta name="msapplication-TileImage" content="images/favicons/ms-icon-144x144.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     .success {
       color: #1e8e3e;
@@ -52,6 +34,34 @@
       font-weight: 700;
     }
   </style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-59D7VS39H4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-59D7VS39H4');
+  </script>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="images/favicons/manifest.json">
+  <meta name="msapplication-TileColor" content="#455a64">
+  <meta name="msapplication-TileImage" content="images/favicons/ms-icon-144x144.png">
 </head>
 
 <body>
@@ -101,6 +111,10 @@
         <li>Activity: Application configuration</li>
         <li>Activity: User actions in EasyTravel</li>
         <li>Activity: Define Conversion Goals</li>
+        <li>Activity: Create a Browser Monitor</li>
+        <li>Activity: Create an Clickpath Monitor</li>
+        <li>Activity: Install a Synthetic-enabled ActiveGate</li>
+        <li>Activity: Add a private location</li>
       </ol>
 
 
@@ -445,6 +459,97 @@
             href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/real-user-monitoring/how-to-use-real-user-monitoring/web-applications/waterfall-analysis/"
             target="_blank">Waterfall analysis</a></p>
       </aside>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create a Browser Monitor" duration="8">
+      <h2 is-upgraded>Create Synthetic Monitor</h2>
+      <ul>
+        <li>Select Synthetic from the menu.</li>
+        <li>Click Create a synthetic monitor.</li>
+        <li>Click Create a browser monitor.</li>
+        <li>On the Configure a synthetic monitor page, type in the URL you want to monitor and give it a unique name.
+          Configure your monitor appropriately, including selecting the profile of your emulated device, choosing
+          monitor frequency and locations, and other settings.</li>
+        <li>Click view monitor summary.</li>
+        <li>Click create browser monitor.</li>
+      </ul>
+      <p class="image-container"><img alt="Browser Synthetic Ovwerview" src="img\1d6fc3f4718a80d2.png"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create an Clickpath Monitor" duration="20">
+      <h2 is-upgraded>Follow these steps</h2>
+      <ol type="1">
+        <li>Install the Dynatrace Synthetic Recorder extension <ul>
+            <li>Select Synthetic from the navigation menu.</li>
+            <li>Click <code>Create a synthetic monitor</code> &gt; <code>Create a browser monitor</code>.</li>
+            <li>First-time users are asked to install the Chrome extension. Click
+              <code>Install Dynatrace recorder</code> at the bottom of the page.</li>
+            <li>On the extension page, click <code>Add to Chrome</code> &gt; <code>Add Extension</code>.</li>
+            <li>Once the extension is added, please allow it in <code>Incognito mode</code> as well.</li>
+          </ul>
+        </li>
+        <li>Navigate to Synthetic.</li>
+        <li>Click <code>Create a synthetic monitor</code>.</li>
+        <li>Click <code>Create a browser monitor</code>.</li>
+        <li>Enter a valid URL.</li>
+        <li>Check the default name for your clickpath on the Configure a browser monitor page.</li>
+        <li>Record a browser clickpath. <ul>
+            <li>Select <code>Synthetic</code> from the navigation menu.</li>
+            <li>Click the <code>Create a synthetic monitor</code> button.</li>
+            <li>Click <code>Create a browser monitor</code>.</li>
+            <li>Enter a valid URL and check the default Name for your clickpath on the
+              <code>Configure a browser monitor</code> page.</li>
+          </ul>
+        </li>
+        <li>Continue to configure the monitor—device profile, frequency, monitoring locations, and other options such as
+          cookies and automated login.</li>
+        <li>Click Record clickpath.</li>
+        <li>When done, click the Dynatrace extension icon on your browser&#39;s menu bar to see a list of recorded
+          events and Finish recording.</li>
+        <li>Playback your clickpath.</li>
+      </ol>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Install a Synthetic-enabled ActiveGate" duration="15">
+      <h2 is-upgraded>Installing ActiveGate with SYnthetic Enabled</h2>
+      <ol type="1">
+        <li>For Environment ActiveGate, from the navigation menu, select <code>Deploy Dynatrace</code> &gt;
+          <code>Install ActiveGate</code>.</li>
+        <li>Select the operating system and follow the on-screen instructions.</li>
+        <li>For <code>What&#39;s the purpose of this ActiveGate?</code>, select Run synthetic monitors from a private
+          location.</li>
+        <li>Download the installer</li>
+        <li>Install the ActiveGate in the VM/Machine using command line by pasting the command that is generated in the
+          belo step of Installation page in Dynatrace.</li>
+      </ol>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Add a private location" duration="5">
+      <h2 is-upgraded>Add Synthetic Location</h2>
+      <ul>
+        <li>In the Dynatrace web UI, go to <code>Settings</code> &gt; <code>Web &amp; mobile monitoring</code> &gt;
+          <code>Private synthetic locations</code>.</li>
+        <li>Select <code>Create location</code>.</li>
+        <li>Give your location a custom Name, for example <code>DT Training office</code>.</li>
+        <li>Map it from an existing geographic location or add a new one. This is defined by Region, City, and
+          Geographic coordinates.</li>
+      </ul>
+      <p class="image-container"><img alt="Adding Private Synthetic Location" src="img\5452f7a5bf549803.png"></p>
+      <ul>
+        <li>Add the <code>Synthetic-enabled ActiveGate</code> you&#39;ve just installed to the location.</li>
+        <li>Select <code>Add</code>.</li>
+        <li>Select <code>Save</code>`.</li>
+        <li>Now you can change the location to the newly added private location in your Synthetic monitors from the ones
+          you have created previously.</li>
+      </ul>
 
 
     </google-codelab-step>
