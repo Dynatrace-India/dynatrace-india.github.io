@@ -48,7 +48,8 @@ Duration: 1
 1. Activity: Create an Clickpath Monitor
 1. Activity: Install a Synthetic-enabled ActiveGate
 1. Activity: Add a private location
-
+1. Activity: Automatic Tagging
+1. Activity: Create a User Tag
 <!-- ------------------------ -->
 ## Activity: Setting-up lab environment
 Duration: 10
@@ -371,3 +372,42 @@ Duration: 5
 - Select ```Add```.
 - Select ``Save```.
 - Now you can change the location to the newly added private location in your Synthetic monitors from the ones you have created previously. 
+
+<!-- ------------------------ -->
+## Activity - Automatic Tagging
+Duration: 5
+
+### Tag all entities belongs to the Development
+- From the navigation menu, go to ```Settings``` > ```Tags``` > ```Automatically Applied Tags```
+- Click on ```Create tag```
+- Enter the name for the tag you want to apply
+- Click on ```Add a new rule```
+
+![Auto Tagging](assets/basics_101/auto_tag.png)
+
+- Now we can add condition for the entities that are having host groups to tag with Development or Production. 
+	- In order to do that you can create multiple tags, so for now in this tag let’s tag the entities of Development
+	- After creating this we need to follow the same process for production entities as well. 
+	![Auto Tag Rule](assets/basics_101/auto_tag2.png)
+	- Click on preview to view all the affected entities
+	![Auto Tag Preview](assets/basics_101/auto_tag2.png)
+
+- Check out entities for the tag and Voila!!!! You have successfully created Automatic tagging rules.
+
+## Activity: Create a User Tag
+Duration: 5
+
+### Tag a user in EasyTravel
+- From the navigation menu, click Applications.
+- Select the application you want to configure.
+- Click the Browse (…) button and select Edit.
+- Click the User tags tab.
+- Click Add tag (identifier) rule.
+- From the Expression type to capture drop list, select CSS selector.
+- Type the CSS selector value into the CSS selector field.
+	- Enter: copied selector from the webpage
+	![User Tagging](assets/basics_101/user_tag.png)
+
+- Click Add tag (identifier) rule and then click Save.
+- Wait for 4 to 5 minutes and see the tags are reflecting in user sessions
+

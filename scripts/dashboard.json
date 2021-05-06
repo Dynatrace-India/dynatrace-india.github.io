@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      3
+    ],
+    "clusterVersion": "1.216.103.20210429-182127"
+  },
+  "id": "b1151103-72bc-481c-8dac-9686aeeeeb4d",
+  "dashboardMetadata": {
+    "name": "DevOps",
+    "shared": true,
+    "owner": "admin",
+    "tags": [
+      "EasyTravel",
+      "Demo"
+    ]
+  },
+  "tiles": [
+    {
+      "name": "Applications",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Application health",
+      "tileType": "APPLICATIONS",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 0,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "chartVisible": true
+    },
+    {
+      "name": "Synthetic monitor health",
+      "tileType": "SYNTHETIC_TESTS",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 152,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "chartVisible": true
+    },
+    {
+      "name": "Web application",
+      "tileType": "APPLICATION",
+      "configured": true,
+      "bounds": {
+        "top": 190,
+        "left": 0,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "assignedEntities": [
+        "APPLICATION-C88487E099DB57E9"
+      ]
+    },
+    {
+      "name": "Resources",
+      "tileType": "RESOURCES",
+      "configured": false,
+      "bounds": {
+        "top": 494,
+        "left": 0,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "assignedEntities": []
+    },
+    {
+      "name": "Browser monitor",
+      "tileType": "SYNTHETIC_SINGLE_WEBCHECK",
+      "configured": false,
+      "bounds": {
+        "top": 38,
+        "left": 304,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "assignedEntities": [],
+      "excludeMaintenanceWindows": false
+    },
+    {
+      "name": "Web application",
+      "tileType": "APPLICATION",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 304,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "assignedEntities": [
+        "APPLICATION-6A0368DCB7C93D89"
+      ]
+    },
+    {
+      "name": "Services",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 608,
+        "width": 456,
+        "height": 38
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Service health",
+      "tileType": "SERVICES",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 608,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "chartVisible": true
+    },
+    {
+      "name": "Database health",
+      "tileType": "DATABASES_OVERVIEW",
+      "configured": true,
+      "bounds": {
+        "top": 190,
+        "left": 608,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "chartVisible": true
+    },
+    {
+      "name": "Service or request",
+      "tileType": "SERVICE_VERSATILE",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 760,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "assignedEntities": [
+        "SERVICE-9493FBB4D8F8C951"
+      ]
+    },
+    {
+      "name": "Service or request",
+      "tileType": "SERVICE_VERSATILE",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 608,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "assignedEntities": [
+        "SERVICE-3353207F50ED183E"
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1064,
+        "width": 456,
+        "height": 38
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Host health",
+      "tileType": "HOSTS",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1064,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "chartVisible": true
+    },
+    {
+      "name": "Network status",
+      "tileType": "NETWORK_MEDIUM",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1216,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Network metrics",
+      "tileType": "NETWORK",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 1064,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Smartscape",
+      "tileType": "PURE_MODEL",
+      "configured": true,
+      "bounds": {
+        "top": 190,
+        "left": 1064,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {}
+    }
+  ]
+}

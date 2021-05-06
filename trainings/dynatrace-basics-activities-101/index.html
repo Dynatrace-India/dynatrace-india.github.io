@@ -6,10 +6,6 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Dynatrace Basics - Lab Activities 101</title>
-  <link rel="stylesheet"
-    href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <!--Adding Monitoring Snippet-->
   <script type="text/javascript"
     src="https://trn567.dynatrace-managed.com:9999/jstag/managed/c08a8ab3-83c9-4efe-8903-73ed21722e70/6b617a3e7e9dd614_complete.js"
@@ -25,6 +21,7 @@
 
     gtag('config', 'G-59D7VS39H4');
   </script>
+
 
   <link rel="stylesheet" href="../../elements/codelab-elements/codelab-elements.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -46,6 +43,10 @@
   <link rel="manifest" href="images/favicons/manifest.json">
   <meta name="msapplication-TileColor" content="#455a64">
   <meta name="msapplication-TileImage" content="images/favicons/ms-icon-144x144.png">
+  <title>Dynatrace Basics - Lab Activities 101</title>
+  <link rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     .success {
       color: #1e8e3e;
@@ -54,15 +55,13 @@
     .error {
       color: red;
     }
-
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-    }
-
-    h1 h2 h3 {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 700;
-    }
+    font-family: 'Noto Sans JP', sans-serif;
+}
+h1 h2 h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+}
   </style>
 </head>
 
@@ -101,7 +100,7 @@
 
     </google-codelab-step>
 
-    <google-codelab-step label="What you&#39;ll learn" duration="1">
+    <google-codelab-step label="What you&#39;ll learn" duration="10">
       <h2 is-upgraded>List of activities</h2>
       <ol type="1">
         <li>Setting Up Lab Environment</li>
@@ -117,12 +116,9 @@
         <li>Activity: Create an Clickpath Monitor</li>
         <li>Activity: Install a Synthetic-enabled ActiveGate</li>
         <li>Activity: Add a private location</li>
+        <li>Activity: Automatic Tagging</li>
+        <li>Activity: Create a User Tag Activity: Setting-up lab environment </li>
       </ol>
-
-
-    </google-codelab-step>
-
-    <google-codelab-step label="Activity: Setting-up lab environment" duration="10">
       <p>In this training lab, we have provided you with 2 VMs which will be used for lab activities. Hence, before
         starting the training please get to know your credentials and that are sent to you to your email personally
         along with RDP files to connect to VMs.</p>
@@ -579,6 +575,53 @@
         <li>Select <code>Save</code>`.</li>
         <li>Now you can change the location to the newly added private location in your Synthetic monitors from the ones
           you have created previously.</li>
+      </ul>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity - Automatic Tagging" duration="5">
+      <h2 is-upgraded>Tag all entities belongs to the Development</h2>
+      <ul>
+        <li>From the navigation menu, go to <code>Settings</code> &gt; <code>Tags</code> &gt;
+          <code>Automatically Applied Tags</code></li>
+        <li>Click on <code>Create tag</code></li>
+        <li>Enter the name for the tag you want to apply</li>
+        <li>Click on <code>Add a new rule</code></li>
+      </ul>
+      <p class="image-container"><img alt="Auto Tagging" src="img\a762c9b1356e50e3.png"></p>
+      <ul>
+        <li>Now we can add condition for the entities that are having host groups to tag with Development or Production.
+          <ul>
+            <li>In order to do that you can create multiple tags, so for now in this tag let&#39;s tag the entities of
+              Development</li>
+            <li>After creating this we need to follow the same process for production entities as well. <img
+                alt="Auto Tag Rule" src="img\c35dd29a114b4253.png"></li>
+            <li>Click on preview to view all the affected entities <img alt="Auto Tag Preview"
+                src="img\c35dd29a114b4253.png"></li>
+          </ul>
+        </li>
+        <li>Check out entities for the tag and Voila!!!! You have successfully created Automatic tagging rules.</li>
+      </ul>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create a User Tag" duration="5">
+      <h2 is-upgraded>Tag a user in EasyTravel</h2>
+      <ul>
+        <li>From the navigation menu, click Applications.</li>
+        <li>Select the application you want to configure.</li>
+        <li>Click the Browse (...) button and select Edit.</li>
+        <li>Click the User tags tab.</li>
+        <li>Click Add tag (identifier) rule.</li>
+        <li>From the Expression type to capture drop list, select CSS selector.</li>
+        <li>Type the CSS selector value into the CSS selector field. <ul>
+            <li>Enter: copied selector from the webpage <img alt="User Tagging" src="img\6e7c0f07608f4494.png"></li>
+          </ul>
+        </li>
+        <li>Click Add tag (identifier) rule and then click Save.</li>
+        <li>Wait for 4 to 5 minutes and see the tags are reflecting in user sessions</li>
       </ul>
 
 
