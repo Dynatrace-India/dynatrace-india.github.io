@@ -47,6 +47,7 @@
   <link rel="stylesheet"
     href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
   <style>
     .success {
       color: #1e8e3e;
@@ -55,20 +56,23 @@
     .error {
       color: red;
     }
+
     body {
-    font-family: 'Noto Sans JP', sans-serif;
-}
-h1 h2 h3 {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-}
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    h1 h2 h3 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+    }
   </style>
 </head>
 
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid="G-59D7VS39H4" id="dynatrace-basics-activities-101"
-    title="Dynatrace Basics - Lab Activities 101" environment="web" feedback-link="https://thetechnologist.in">
+    title="Dynatrace Basics - Lab Activities 101" environment="web"
+    feedback-link="https://github.com/Dynatrace-India/dynatrace-india.github.io/issues">
 
     <google-codelab-step label="Getting Started" duration="2">
       <p class="image-container"><img alt="dynatrace-logo" src="img\ffc109b4606e0e0a.png"></p>
@@ -100,7 +104,7 @@ h1 h2 h3 {
 
     </google-codelab-step>
 
-    <google-codelab-step label="What you&#39;ll learn" duration="10">
+    <google-codelab-step label="What you&#39;ll learn" duration="1">
       <h2 is-upgraded>List of activities</h2>
       <ol type="1">
         <li>Setting Up Lab Environment</li>
@@ -117,8 +121,19 @@ h1 h2 h3 {
         <li>Activity: Install a Synthetic-enabled ActiveGate</li>
         <li>Activity: Add a private location</li>
         <li>Activity: Automatic Tagging</li>
-        <li>Activity: Create a User Tag Activity: Setting-up lab environment </li>
+        <li>Activity: Create a User Tag</li>
+        <li>Activity: Create an alert profile and email integration</li>
+        <li>Activity: Add a custom chart</li>
+        <li>Activity: Create a service naming rule</li>
+        <li>Activity: Create a host naming rule</li>
+        <li>Activity: Create a maintenance window</li>
+        <li>Activity: Creating Management Zones</li>
       </ol>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Setting-up lab environment" duration="10">
       <p>In this training lab, we have provided you with 2 VMs which will be used for lab activities. Hence, before
         starting the training please get to know your credentials and that are sent to you to your email personally
         along with RDP files to connect to VMs.</p>
@@ -623,6 +638,192 @@ h1 h2 h3 {
         <li>Click Add tag (identifier) rule and then click Save.</li>
         <li>Wait for 4 to 5 minutes and see the tags are reflecting in user sessions</li>
       </ul>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create an alert profile and email integration" duration="10">
+      <h2 is-upgraded>Creating Alerting Profile</h2>
+      <ul>
+        <li>Go to <code>Settings</code> -&gt; <code>Alerting</code> -&gt; <code>Alerting Profiles</code>. <ul>
+            <li>Create an Alerting Profile named &#34;easyTravel Support.&#34;</li>
+            <li>Leave the Severity rules as the defaults, but spend a few minutes exploring the options.</li>
+            <li>Also explore the options for creating event filters, but do not create one.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3 is-upgraded>Severity Rules</h3>
+      <p class="image-container"><img alt="Alerting Profile Severity Rules" src="img\156ba268603da591.png"></p>
+      <aside class="special">
+        <p>To configure severity rules, you need to understand the concept of problem severity levels. Please follow
+          this Dynatrace help article to know more, <a
+            href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/basic-concepts/event-types/"
+            target="_blank">Event Types</a></p>
+      </aside>
+      <ul>
+        <li>Add required severity rules you want for the alerting profuile of you can refer the screenshot above for
+          adding popular types</li>
+        <li>Also delaying the problem alert can be done in Alerting profiles based on severity of the problem. For e.g.
+          If the perticular host in the is not available or it got stopped due to outages, it is a priority one for us
+          and there shouldn&#39;t be delay in alerting the problem but, in case of errors, we can delay the alerting to
+          make sure we don&#39;t get notified for minute errors.</li>
+      </ul>
+      <h2 is-upgraded>Create an Email Integration</h2>
+      <ul>
+        <li>Go to <code>Settings</code> -&gt; <code>Integration</code> -&gt; <code>Problem notification</code>. <ul>
+            <li>Set up a new e-mail notification to yourself.</li>
+            <li>Review the options available for the Subject line and make changes if you&#39;d like.</li>
+            <li>Selecting the Alerting profile just created.</li>
+          </ul>
+        </li>
+      </ul>
+      <aside class="special">
+        <p>You can also add your own template that you have designed in HTML format to generalize the desifgn pattern of
+          problem notification.</p>
+      </aside>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Add a custom chart" duration="10">
+      <h2 is-upgraded>Create a custom chart</h2>
+      <ul>
+        <li>Click <code>&#34;Create custom chart&#34;</code> in the navigation menu</li>
+        <li>Select a <code>category</code>.</li>
+        <li>Select a <code>metric</code>.</li>
+        <li>Explore the chart options and filtering.</li>
+        <li>Choose an option to Export the chart.</li>
+        <li>When your chart is ready click <code>Pin to dashboard</code>.</li>
+        <li>Select <code>DevOps</code> Dashboard we created in earlier session.</li>
+        <li>View the chart tile on your Dashboard.</li>
+        <li>Click to reopen the chart.</li>
+      </ul>
+      <p class="image-container"><img alt="Dashboard Custom Charts" src="img\cbf9acca76c7c614.png"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create a service naming rule" duration="5">
+      <h2 is-upgraded>Create service name rule</h2>
+      <ul>
+        <li>Go to <code>Settings</code> -&gt; <code>Server-side monitoring</code> -&gt;
+          <code>Service naming rules</code>.</li>
+        <li>Click the <code>Add a new rule</code> button.</li>
+        <li>Name your rule.</li>
+        <li>Define the service name format including any static text string. <ul>
+            <li>Example: <code>{Service:DetectedName} - {HostGroup:Name}</code></li>
+          </ul>
+        </li>
+        <li>Add one or more Conditions to the rule. <ul>
+            <li>Example: <code>Host group name</code> exists</li>
+          </ul>
+        </li>
+        <li>Preview your service naming rule to see what the new name would be.</li>
+      </ul>
+      <p class="image-container"><img alt="Service Naming Rule" src="img\82cb655932012173.png"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create a host naming rule" duration="5">
+      <h2 is-upgraded>Create host naming rule</h2>
+      <ul>
+        <li>Go to <code>Settings</code> -&gt; <code>Monitoring</code> -&gt; <code>Host Naming</code></li>
+        <li>Enter a Rule name.</li>
+        <li>Enter a rule in the <code>Host name format</code> field.</li>
+        <li>Combine some text with a placeholder value <ul>
+            <li>Tip: Try {Host:DetectedName} - {HostGroup:Name} {Host:IpAddress}</li>
+          </ul>
+        </li>
+        <li>Try options for matching properties and conditions. <ul>
+            <li>Tip: Try host group name exists</li>
+          </ul>
+        </li>
+        <li>Preview the rule to see the matches and resultant name.</li>
+        <li>Save the changes</li>
+      </ul>
+      <p class="image-container"><img alt="Host Naming" src="img\8c1b8f35580de87d.png"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Create a maintenance window" duration="5">
+      <h2 is-upgraded>Creating Maintenance window</h2>
+      <ul>
+        <li>Go to <code>Settings</code> -&gt; <code>Maintenance windows</code> -&gt;
+          <code>Monitoring, alerting and availability</code></li>
+        <li>Select the Type</li>
+        <li>Define a recurring schedule (if needed)</li>
+        <li>Specify the action: <ul>
+            <li>Detect problems and alert</li>
+            <li>Detect problems but don&#39;t alert</li>
+            <li>Disable problem detection</li>
+          </ul>
+        </li>
+        <li>Define the Scope</li>
+        <li>Use the tag filter to assign maintenance windows to the entities that are tagged automatically using aut-tag
+          rule. <ul>
+            <li>Tip: In our case, it is <code>Development</code></li>
+          </ul>
+        </li>
+        <li>Save the maintenance window.</li>
+        <li>This also supports via API as well. If you havwe read-only access, yuo can use APIs to schedule maintenance
+          window on the go using Postman or other tools.</li>
+      </ul>
+      <p class="image-container"><img alt="Maintenance Window" src="img\94ea0ab4c8ce99d7.png"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Activity: Creating Management Zones" duration="5">
+      <p>Management zones are comprised of rules that define which entities and dimensional data (such as metrics) can
+        be accessed within each management zone. These rules are based on the powerful Dynatrace tagging engine and
+        other criteria for including entities. In combination with user and group permissions, you can set up management
+        zones to create multiple overlapping partitions in your environment to promote collaboration and security.</p>
+      <h2 is-upgraded>Create Management zone</h2>
+      <ul>
+        <li>Go to Settings &gt; Preferences &gt; Management zones.</li>
+        <li>Select Add new management zone. <img alt="Management Zone" src="img\13279cb741dfdddb.png"></li>
+        <li>Provide a Management zone name.</li>
+        <li>Create management-zone rules governing which entities and data are part of and accessible within the
+          management zone. These rules are built upon the powerful Dynatrace tagging engine and other criteria. In the
+          image below, you can see a number of rule examples that you can define to set up a management zone. <img
+            alt="Created Management Zones" src="img\3a8875d69ad9be0b.png"></li>
+      </ul>
+      <h2 is-upgraded>Assign access rights to management zones</h2>
+      <ul>
+        <li>After you set up a management zone, it&#39;s time to define which user groups should have access to the
+          management zone and at what level.</li>
+      </ul>
+      <h3 is-upgraded>Dynatrace SaaS</h3>
+      <p>Go to your Accounts view. User and group permission controls are available when you sign in at
+        https://account.dynatrace.com. You can also access Account settings from the User menu in the menu bar.</p>
+      <aside class="special">
+        <p>See <a
+            href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/management-zones/how-to-apply-management-zones/"
+            target="_blank">How to apply management zones</a> and <a
+            href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/user-management-and-sso/manage-groups-and-permissions/"
+            target="_blank">Manage user groups and permissions</a> for details.</p>
+      </aside>
+      <h3 is-upgraded>Dynatrace Managed</h3>
+      <p>From the navigation menu of the Cluster Management Console, select <code>User authentication</code> &gt;
+        <code>User groups</code> &gt; your user group to assign permissions.</p>
+      <p class="image-container"><img alt="Assign MZs" src="img\cfea2b26e965a48.png"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Wrapping-up the code lab" duration="3">
+      <h2 is-upgraded>Congratulations, You did it! 🎉</h2>
+      <p>Finally after some hours and days of study, you did it. 👏 Cheers to you for completing the code lab. We are
+        happy that we helped you to prgress in APM career and understanding about Dynatrace. Do you have any suggestions
+        or any mistakes you want to report please feel free to create and issue in our public repository and we will try
+        our best to address it. <a href="https://github.com/Dynatrace-India/dynatrace-india.github.io/issues"
+          target="_blank">GitHub repository</a></p>
+      <p>For now, we say goodbye to you and if you need any help at anytime, please use this <a
+          href="https://github.com/Dynatrace-India/Dynatrace-India-ACE-Help/issues" target="_blank">link</a> and tell us
+        what you need. We will jump in and help you.</p>
+      <p><strong>Signing off, <br></strong><em>Your Friends <br></em> Dynatrace India ACE Team</p>
 
 
     </google-codelab-step>
