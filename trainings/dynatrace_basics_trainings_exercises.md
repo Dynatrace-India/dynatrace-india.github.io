@@ -4,7 +4,7 @@ categories: Training
 tags: dynatrace-india, trainings
 status: Draft 
 authors: Vishruth Harithsa
-Feedback Link: https://thetechnologist.in
+Feedback Link: https://github.com/Dynatrace-India/dynatrace-india.github.io/issues
 Analytics Account: G-59D7VS39H4
 
 
@@ -50,6 +50,13 @@ Duration: 1
 1. Activity: Add a private location
 1. Activity: Automatic Tagging
 1. Activity: Create a User Tag
+1. Activity: Create an alert profile and email integration
+1. Activity: Add a custom chart
+1. Activity: Create a service naming rule
+1. Activity: Create a host naming rule
+1. Activity: Create a maintenance window
+1. Activity: Creating Management Zones
+
 <!-- ------------------------ -->
 ## Activity: Setting-up lab environment
 Duration: 10
@@ -394,6 +401,7 @@ Duration: 5
 
 - Check out entities for the tag and Voila!!!! You have successfully created Automatic tagging rules.
 
+<!-- ------------------------ -->
 ## Activity: Create a User Tag
 Duration: 5
 
@@ -411,3 +419,142 @@ Duration: 5
 - Click Add tag (identifier) rule and then click Save.
 - Wait for 4 to 5 minutes and see the tags are reflecting in user sessions
 
+<!-- ------------------------ -->
+## Activity: Create an alert profile and email integration
+Duration: 10
+
+### Creating Alerting Profile
+- Go to ```Settings``` -> ```Alerting``` -> ```Alerting Profiles```.
+	- Create an Alerting Profile named “easyTravel Support.”
+	- Leave the Severity rules as the defaults, but spend a few minutes exploring the options.
+	- Also explore the options for creating event filters, but do not create one.
+
+#### Severity Rules
+![Alerting Profile Severity Rules](assets/basics_101/alerting_profile.png)
+
+Positive
+: To configure severity rules, you need to understand the concept of problem severity levels. Please follow this Dynatrace help article to know more, [Event Types](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/basic-concepts/event-types/)
+
+- Add required severity rules you want for the alerting profuile of you can refer the screenshot above for adding popular types
+- Also delaying the problem alert can be done in Alerting profiles based on severity of the problem. For e.g. If the perticular host in the is not available or it got stopped due to outages, it is a priority one for us and there shouldn't be delay in alerting the problem but, in case of errors, we can delay the alerting to make sure we don't get notified for minute errors. 
+
+### Create an Email Integration
+- Go to ```Settings``` -> ```Integration``` -> ```Problem notification```.
+	- Set up a new e-mail notification to yourself.
+	- Review the options available for the Subject line and make changes if you’d like.
+	- Selecting the Alerting profile just created.
+
+Positive
+: You can also add your own template that you have designed in HTML format to generalize the desifgn pattern of problem notification. 
+
+<!-- ------------------------ -->
+## Activity: Add a custom chart
+Duration: 10
+
+### Create a custom chart
+- Click ```“Create custom chart”``` in the navigation menu
+- Select a ```category```.
+- Select a ```metric```.
+- Explore the chart options and filtering.
+- Choose an option to Export the chart.
+- When your chart is ready click ```Pin to dashboard```.
+- Select ```DevOps``` Dashboard we created in earlier session.
+- View the chart tile on your Dashboard.
+- Click to reopen the chart.
+
+![Dashboard Custom Charts](assets/basics_101/custom_charts.png)
+
+<!-- ------------------------ -->
+## Activity: Create a service naming rule
+Duration: 5
+
+### Create service name rule
+- Go to ```Settings``` -> ```Server-side monitoring``` -> ```Service naming rules```.
+- Click the ```Add a new rule``` button.
+- Name your rule. 
+- Define the service name format including any static text string.
+	- Example: ```{Service:DetectedName} - {HostGroup:Name}```
+- Add one or more Conditions to the rule.
+	- Example: ```Host group name``` exists
+- Preview your service naming rule to see what the new name would be. 
+
+![Service Naming Rule](assets/basics_101/service_naming.png)
+
+<!-- ------------------------ -->
+## Activity: Create a host naming rule
+Duration: 5
+
+### Create host naming rule
+- Go to ```Settings``` -> ```Monitoring``` -> ```Host Naming```
+- Enter a Rule name.
+- Enter a rule in the ```Host name format``` field. 
+- Combine some text with a placeholder value
+	- Tip: Try {Host:DetectedName} - {HostGroup:Name} {Host:IpAddress}
+- Try options for matching properties and conditions.
+	- Tip: Try host group name exists
+- Preview the rule to see the matches and resultant name.
+- Save the changes
+
+![Host Naming](assets/basics_101/host_naming.png)
+
+<!-- ------------------------ -->
+## Activity: Create a maintenance window
+Duration: 5
+
+### Creating Maintenance window
+- Go to ```Settings``` -> ```Maintenance windows``` -> ```Monitoring, alerting and availability```
+- Select the Type
+- Define a recurring schedule (if needed)
+- Specify the action:
+	- Detect problems and alert
+	- Detect problems but don’t alert
+	- Disable problem detection
+- Define the Scope
+- Use the tag filter to assign maintenance windows to the entities that are tagged automatically using aut-tag rule. 
+	- Tip: In our case, it is ```Development```
+- Save the maintenance window. 
+- This also supports via API as well. If you havwe read-only access, yuo can use APIs to schedule maintenance window on the go using Postman or other tools. 
+
+![Maintenance Window](assets/basics_101/maintenance_window.png)
+
+<!-- ------------------------ -->
+## Activity: Creating Management Zones
+Duration: 5
+
+Management zones are comprised of rules that define which entities and dimensional data (such as metrics) can be accessed within each management zone. These rules are based on the powerful Dynatrace tagging engine and other criteria for including entities. In combination with user and group permissions, you can set up management zones to create multiple overlapping partitions in your environment to promote collaboration and security.
+
+### Create Management zone
+- Go to Settings > Preferences > Management zones.
+- Select Add new management zone.
+![Management Zone](assets/basics_101/management_zones1.png)
+- Provide a Management zone name.
+- Create management-zone rules governing which entities and data are part of and accessible within the management zone. These rules are built upon the powerful Dynatrace tagging engine and other criteria. In the image below, you can see a number of rule examples that you can define to set up a management zone.
+![Created Management Zones](assets/basics_101/management_zones2.png)
+
+### Assign access rights to management zones
+- After you set up a management zone, it’s time to define which user groups should have access to the management zone and at what level.
+
+#### Dynatrace SaaS
+Go to your Accounts view. User and group permission controls are available when you sign in at https://account.dynatrace.com. You can also access Account settings from the User menu in the menu bar.
+
+Positive
+: See [How to apply management zones](https://www.dynatrace.com/support/help/how-to-use-dynatrace/management-zones/how-to-apply-management-zones/) and [Manage user groups and permissions](https://www.dynatrace.com/support/help/how-to-use-dynatrace/user-management-and-sso/manage-groups-and-permissions/) for details.
+
+#### Dynatrace Managed
+From the navigation menu of the Cluster Management Console, select ```User authentication``` > ```User groups``` > your user group to assign permissions.
+
+![Assign MZs](assets/basics_101/management_zones3.png)
+
+<!-- ------------------------ -->
+## Wrapping-up the code lab
+Duration: 3
+
+### Congratulations, You did it! 🎉
+Finally after some hours and days of study, you did it. 👏
+Cheers to you for completing the code lab. We are happy that we helped you to prgress in APM career and understanding about Dynatrace. Do you have any suggestions or any mistakes you want to report please feel free to create and issue in our public repository and we will try our best to address it. [GitHub repository](https://github.com/Dynatrace-India/dynatrace-india.github.io/issues)
+
+For now, we say goodbye to you and if you need any help at anytime, please use this [link](https://github.com/Dynatrace-India/Dynatrace-India-ACE-Help/issues) and tell us what you need. We will jump in and help you. 
+
+**Signing off,** <br>
+*Your Friends* <br>
+Dynatrace India ACE Team

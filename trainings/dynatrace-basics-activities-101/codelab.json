@@ -3,9 +3,9 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2021-05-06T09:18:56+05:30",
+  "updated": "2021-05-07T09:29:20+05:30",
   "id": "dynatrace-basics-activities-101",
-  "duration": 176,
+  "duration": 219,
   "title": "Dynatrace Basics - Lab Activities 101",
   "authors": "Vishruth Harithsa",
   "summary": "",
@@ -21,7 +21,7 @@
     "dynatrace-india",
     "trainings"
   ],
-  "feedback": "https://thetechnologist.in",
+  "feedback": "https://github.com/Dynatrace-India/dynatrace-india.github.io/issues",
   "ga": "G-59D7VS39H4",
   "url": "dynatrace-basics-activities-101"
 }
