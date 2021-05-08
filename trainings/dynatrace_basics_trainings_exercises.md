@@ -66,7 +66,7 @@ In this training lab, we have provided you with 2 VMs which will be used for lab
 ### Lab Activity
 1. Sign in to your mail box and find an email with RDP files and password to access them.
 1. Once login is complete, use another email that you have received from **notifications-dynatrace** and login to dedicated Dynatrace environment for training.
-1. If you want to access anytime after setting password to your DT Environment, please use this link [https://bit.ly/dt-transform](https://bit.ly/dt-transform)
+1. If you want to access anytime after setting password to your DT Environment, please use this link [https://dt-transform.com](https://dt-transform.com)
 1. Raise your hand if you are able to set up environment and access virtual machines.
 1. Using this link, [EasyTravel](https://community.dynatrace.com/community/display/DL/Demo+Applications+-+easyTravel#DemoApplications-easyTravel-Download(Installer+License)) please download Windows version of the application (x64) and install it in both your VMs.
 1. Start easyTravel via the UI, clicking on Dynatrace Production Standard.
@@ -554,6 +554,8 @@ Finally after some hours and days of study, you did it. 👏
 Cheers to you for completing the code lab. We are happy that we helped you to prgress in APM career and understanding about Dynatrace. Do you have any suggestions or any mistakes you want to report please feel free to create and issue in our public repository and we will try our best to address it. [GitHub repository](https://github.com/Dynatrace-India/dynatrace-india.github.io/issues)
 
 For now, we say goodbye to you and if you need any help at anytime, please use this [link](https://github.com/Dynatrace-India/Dynatrace-India-ACE-Help/issues) and tell us what you need. We will jump in and help you. 
+
+Please find the resources that will be useful for you to learn about all the lab activities that we completed. Clicking on this [link](assets/basics_101/presentations_tiaa1.zip) will let you to download all the resources in archive format. 
 
 **Signing off,** <br>
 *Your Friends* <br>
